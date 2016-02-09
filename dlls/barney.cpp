@@ -620,7 +620,7 @@ void CBarney::Killed( entvars_t *pevAttacker, int iGib )
 
 		GetAttachment( 0, vecGunPos, vecGunAngles );
 		
-		CBaseEntity *pGun = DropItem( "weapon_9mmhandgun", vecGunPos, vecGunAngles );
+		CBaseEntity *pGun = DropItem( "weapon_barney9mmhg", vecGunPos, vecGunAngles );//edit Alex, in Azure Sheep entity is named another way
 	}
 
 	SetUse( NULL );	
