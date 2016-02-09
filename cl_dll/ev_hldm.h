@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright Â© 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -17,10 +17,15 @@ typedef	enum
 	BULLET_PLAYER_357, // python
 	BULLET_PLAYER_BUCKSHOT, // shotgun
 	BULLET_PLAYER_CROWBAR, // crowbar swipe
-
+	//begin Alex
+	BULLET_PLAYER_M41A,
+	BULLET_PLAYER_BERETTA,
+	//end Alex
+	
 	BULLET_MONSTER_9MM,
 	BULLET_MONSTER_MP5,
 	BULLET_MONSTER_12MM,
+	BULLET_MONSTER_M41A,//Alex
 } Bullet;
 
 enum glock_e {
@@ -35,7 +40,20 @@ enum glock_e {
 	GLOCK_HOLSTER,
 	GLOCK_ADD_SILENCER
 };
-
+//begin Alex
+enum beretta_e {
+	BERETTA_IDLE1 = 0,
+	BERETTA_IDLE2,
+	BERETTA_IDLE3,
+	BERETTA_SHOOT,
+	BERETTA_SHOOT_EMPTY,
+	BERETTA_RELOAD,
+	BERETTA_RELOAD_NOT_EMPTY,
+	BERETTA_DRAW,
+	BERETTA_HOLSTER,
+	BERETTA_ADD_SILENCER
+};
+//end Alex
 enum shotgun_e {
 	SHOTGUN_IDLE = 0,
 	SHOTGUN_FIRE,
@@ -60,7 +78,19 @@ enum mp5_e
 	MP5_FIRE2,
 	MP5_FIRE3,
 };
-
+//begin Alex
+enum m41a_e
+{
+	M41A_LONGIDLE = 0,
+	M41A_IDLE1,
+	M41A_LAUNCH,
+	M41A_RELOAD,
+	M41A_DEPLOY,
+	M41A_FIRE1,
+	M41A_FIRE2,
+	//M41A_FIRE3,
+};
+//end Alex
 enum python_e {
 	PYTHON_IDLE1 = 0,
 	PYTHON_FIDGET,
