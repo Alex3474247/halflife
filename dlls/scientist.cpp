@@ -114,6 +114,7 @@ private:
 };
 
 LINK_ENTITY_TO_CLASS( monster_scientist, CScientist )
+LINK_ENTITY_TO_CLASS( monster_worker, CScientist )//Alex
 
 TYPEDESCRIPTION	CScientist::m_SaveData[] = 
 {
@@ -657,8 +658,14 @@ void CScientist :: HandleAnimEvent( MonsterEvent_t *pEvent )
 void CScientist :: Spawn( void )
 {
 	Precache( );
-
+	if (FClassnameIs(pev,"monster_scientist"))
+	{
 	SET_MODEL(ENT(pev), "models/scientist.mdl");
+	}
+	else
+	{
+	SET_MODEL(ENT(pev), "models/gus.mdl");		
+	}
 	UTIL_SetSize(pev, VEC_HUMAN_HULL_MIN, VEC_HUMAN_HULL_MAX);
 
 	pev->solid			= SOLID_SLIDEBOX;
@@ -694,7 +701,14 @@ void CScientist :: Spawn( void )
 //=========================================================
 void CScientist :: Precache( void )
 {
-	PRECACHE_MODEL("models/scientist.mdl");
+	if (FClassnameIs(pev,"monster_scientist"))
+	{
+	PRECACHE_MODEL("models/scientist.mdl");		
+	}
+	else
+	{
+	PRECACHE_MODEL("models/gus.mdl");				
+	}
 	PRECACHE_SOUND("scientist/sci_pain1.wav");
 	PRECACHE_SOUND("scientist/sci_pain2.wav");
 	PRECACHE_SOUND("scientist/sci_pain3.wav");
@@ -719,7 +733,11 @@ void CScientist :: TalkInit()
 	m_szFriends[0] = "monster_scientist";
 	m_szFriends[1] = "monster_sitting_scientist";
 	m_szFriends[2] = "monster_barney";
-
+	//Alex begin
+	m_szFriends[0] = "monster_hev_barney";
+	m_szFriends[1] = "monster_kate";
+	m_szFriends[2] = "monster_barniel";
+	//Alex end
 	// scientists speach group names (group names are in sentences.txt)
 
 	m_szGrp[TLK_ANSWER]  =	"SC_ANSWER";
@@ -1126,9 +1144,23 @@ LINK_ENTITY_TO_CLASS( monster_scientist_dead, CDeadScientist )
 // ********** DeadScientist SPAWN **********
 //
 void CDeadScientist :: Spawn( )
-{
+{	
+	if (FClassnameIs(pev,"monster_scientist"))
+	{
 	PRECACHE_MODEL("models/scientist.mdl");
+	}
+	else
+	{
+	PRECACHE_MODEL("models/gus.mdl");		
+	}
+	if (FClassnameIs(pev,"monster_scientist"))
+	{
 	SET_MODEL(ENT(pev), "models/scientist.mdl");
+	}
+	else
+	{
+	SET_MODEL(ENT(pev), "models/gus.mdl");		
+	}
 	
 	pev->effects		= 0;
 	pev->sequence		= 0;
