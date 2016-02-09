@@ -39,7 +39,7 @@ enum mp5_e
 
 LINK_ENTITY_TO_CLASS( weapon_mp5, CMP5 )
 LINK_ENTITY_TO_CLASS( weapon_9mmAR, CMP5 )
-
+LINK_ENTITY_TO_CLASS( weapon_barney9mmar, CMP5 );
 
 //=========================================================
 //=========================================================
@@ -50,7 +50,8 @@ int CMP5::SecondaryAmmoIndex( void )
 
 void CMP5::Spawn( )
 {
-	pev->classname = MAKE_STRING("weapon_9mmAR"); // hack to allow for old names
+//	pev->classname = MAKE_STRING("weapon_9mmAR"); // hack to allow for old names
+	pev->classname = MAKE_STRING("weapon_barney9mmar"); // new name for Azure Sheep
 	Precache( );
 	SET_MODEL(ENT(pev), "models/w_9mmAR.mdl");
 	m_iId = WEAPON_MP5;
@@ -66,7 +67,8 @@ void CMP5::Precache( void )
 	PRECACHE_MODEL("models/v_9mmAR.mdl");
 	PRECACHE_MODEL("models/w_9mmAR.mdl");
 	PRECACHE_MODEL("models/p_9mmAR.mdl");
-
+	PRECACHE_MODEL("models/v_barney9mmAR.mdl");
+	
 	m_iShell = PRECACHE_MODEL ("models/shell.mdl");// brass shellTE_MODEL
 
 	PRECACHE_MODEL("models/grenade.mdl");	// grenade
@@ -121,7 +123,7 @@ int CMP5::AddToPlayer( CBasePlayer *pPlayer )
 
 BOOL CMP5::Deploy( )
 {
-	return DefaultDeploy( "models/v_9mmAR.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
+	return DefaultDeploy( "models/v_barney9mmAR.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
 }
 
 
