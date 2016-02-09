@@ -139,7 +139,9 @@ void CGameRules::RefreshSkillData ( void )
 
 	// Barney
 	gSkillData.barneyHealth = GetSkillCvar( "sk_barney_health");
-
+	//Kate
+	gSkillData.kateHealth = GetSkillCvar( "sk_kate_health");
+	
 	// Big Momma
 	gSkillData.bigmommaHealthFactor = GetSkillCvar( "sk_bigmomma_health_factor" );
 	gSkillData.bigmommaDmgSlash = GetSkillCvar( "sk_bigmomma_dmg_slash" );
@@ -180,7 +182,13 @@ void CGameRules::RefreshSkillData ( void )
 	gSkillData.slaveDmgClaw = GetSkillCvar( "sk_islave_dmg_claw");
 	gSkillData.slaveDmgClawrake = GetSkillCvar( "sk_islave_dmg_clawrake");
 	gSkillData.slaveDmgZap = GetSkillCvar( "sk_islave_dmg_zap");
-
+	
+	// panther
+	gSkillData.pantherHealth = GetSkillCvar( "sk_panther_health");
+	gSkillData.pantherDmgClaw = GetSkillCvar( "sk_panther_dmg_claw");
+	gSkillData.pantherDmgClawRake = GetSkillCvar( "sk_panther_dmg_clawrake");
+	gSkillData.pantherDmgZap = GetSkillCvar( "sk_panther_dmg_zap");
+	
 	// Icthyosaur
 	gSkillData.ichthyosaurHealth = GetSkillCvar( "sk_ichthyosaur_health");
 	gSkillData.ichthyosaurDmgShake = GetSkillCvar( "sk_ichthyosaur_shake");
@@ -207,7 +215,12 @@ void CGameRules::RefreshSkillData ( void )
 	gSkillData.snarkHealth = GetSkillCvar( "sk_snark_health");
 	gSkillData.snarkDmgBite = GetSkillCvar( "sk_snark_dmg_bite");
 	gSkillData.snarkDmgPop = GetSkillCvar( "sk_snark_dmg_pop");
-
+	//Alex begin
+	// Toad
+	gSkillData.toadHealth = GetSkillCvar( "sk_toad_health");
+	gSkillData.toadDmgBite = GetSkillCvar( "sk_toad_dmg_bite");
+	gSkillData.toadDmgPop = GetSkillCvar( "sk_toad_dmg_pop");
+	//Alex end
 	// Zombie
 	gSkillData.zombieHealth = GetSkillCvar( "sk_zombie_health");
 	gSkillData.zombieDmgOneSlash = GetSkillCvar( "sk_zombie_dmg_one_slash");
@@ -235,10 +248,17 @@ void CGameRules::RefreshSkillData ( void )
 
 	// MP5 Round
 	gSkillData.plrDmgMP5 = GetSkillCvar( "sk_plr_9mmAR_bullet");
-
+	
+	gSkillData.plrDmgM41A = GetSkillCvar( "sk_plr_9mmM41A_bullet");//Alex
+	gSkillData.plrDmgPoolstick = GetSkillCvar( "sk_plr_poolstick");//Alex
+	gSkillData.plrDmgBeretta = GetSkillCvar( "sk_plr_beretta_bullet");//Alex
+	
 	// M203 grenade
 	gSkillData.plrDmgM203Grenade = GetSkillCvar( "sk_plr_9mmAR_grenade");
-
+	
+	// M203 grenade for M41A
+	gSkillData.plrDmgM41AGrenade = GetSkillCvar( "sk_plr_9mmM41A_grenade");
+	
 	// Shotgun buckshot
 	gSkillData.plrDmgBuckshot = GetSkillCvar( "sk_plr_buckshot");
 
