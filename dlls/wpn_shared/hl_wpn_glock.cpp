@@ -36,11 +36,11 @@ enum glock_e {
 
 LINK_ENTITY_TO_CLASS( weapon_glock, CGlock )
 LINK_ENTITY_TO_CLASS( weapon_9mmhandgun, CGlock )
-
+LINK_ENTITY_TO_CLASS( weapon_barney9mmnh, CGlock )
 
 void CGlock::Spawn( )
 {
-	pev->classname = MAKE_STRING("weapon_9mmhandgun"); // hack to allow for old names
+	pev->classname = MAKE_STRING("weapon_barney9mmhg"); // hack to allow for old names
 	Precache( );
 	m_iId = WEAPON_GLOCK;
 	SET_MODEL(ENT(pev), "models/w_9mmhandgun.mdl");
@@ -53,7 +53,7 @@ void CGlock::Spawn( )
 
 void CGlock::Precache( void )
 {
-	PRECACHE_MODEL("models/v_9mmhandgun.mdl");
+	PRECACHE_MODEL("models/v_barney9mmhg.mdl");
 	PRECACHE_MODEL("models/w_9mmhandgun.mdl");
 	PRECACHE_MODEL("models/p_9mmhandgun.mdl");
 
@@ -90,7 +90,7 @@ int CGlock::GetItemInfo(ItemInfo *p)
 BOOL CGlock::Deploy( )
 {
 	// pev->body = 1;
-	return DefaultDeploy( "models/v_9mmhandgun.mdl", "models/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", /*UseDecrement() ? 1 : 0*/ 0 );
+	return DefaultDeploy( "models/v_barney9mmhg.mdl", "models/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", /*UseDecrement() ? 1 : 0*/ 0 );
 }
 
 void CGlock::SecondaryAttack( void )
