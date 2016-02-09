@@ -94,6 +94,7 @@ public:
 	static const char *pDeathSounds[];
 };
 LINK_ENTITY_TO_CLASS( monster_alien_slave, CISlave )
+LINK_ENTITY_TO_CLASS( monster_exp_alien_slave, CISlave )//new Azure Sheep vortigaunt
 LINK_ENTITY_TO_CLASS( monster_vortigaunt, CISlave )
 
 
@@ -195,7 +196,10 @@ void CISlave :: AlertSound( void )
 	{
 		SENTENCEG_PlayRndSz(ENT(pev), "SLV_ALERT", 0.85, ATTN_NORM, 0, m_voicePitch);
 
+		if (FClassNameIs(pev,"monster_alien_slave"))
 		CallForHelp( "monster_alien_slave", 512, m_hEnemy, m_vecEnemyLKP );
+		else
+		CallForHelp( "monster_exp_alien_slave", 512, m_hEnemy, m_vecEnemyLKP );
 	}
 }
 
@@ -407,7 +411,17 @@ void CISlave :: HandleAnimEvent( MonsterEvent_t *pEvent )
 
 				if ( !trace.fStartSolid )
 				{
-					CBaseEntity *pNew = Create( "monster_alien_slave", m_hDead->pev->origin, m_hDead->pev->angles );
+					if (FClassNameIs(pev,"monster_alien_slave"))
+					{
+						CBaseEntity *pNew = Create( "monster_alien_slave", m_hDead->pev->origin, m_hDead->pev->angles );
+						
+					}
+					else
+					{
+						CBaseEntity *pNew = Create( "monster_exp_alien_slave", m_hDead->pev->origin, m_hDead->pev->angles );
+						
+					}
+					
 					CBaseMonster *pNewMonster = pNew->MyMonsterPointer( );
 					pNew->pev->spawnflags |= 1;
 					WackBeam( -1, pNew );
@@ -478,26 +492,56 @@ BOOL CISlave :: CheckRangeAttack2 ( float flDot, float flDist )
 	m_iBravery = 0;
 
 	CBaseEntity *pEntity = NULL;
-	while ((pEntity = UTIL_FindEntityByClassname( pEntity, "monster_alien_slave" )) != NULL)
+	if (FClassNameIs(pev,"monster_alien_slave"))
 	{
+		while ((pEntity = UTIL_FindEntityByClassname( pEntity, "monster_alien_slave" )) != NULL)
+		{
+			TraceResult tr;
+
+			UTIL_TraceLine( EyePosition( ), pEntity->EyePosition( ), ignore_monsters, ENT(pev), &tr );
+			if (tr.flFraction == 1.0 || tr.pHit == pEntity->edict())
+			{
+				if (pEntity->pev->deadflag == DEAD_DEAD)
+				{
+					float d = (pev->origin - pEntity->pev->origin).Length();
+					if (d < flDist)
+					{
+						m_hDead = pEntity;
+						flDist = d;
+					}
+					m_iBravery--;
+				}
+				else
+				{
+					m_iBravery++;
+				}
+			}
+		}
+		
+	}
+	else
+	{
+		while ((pEntity = UTIL_FindEntityByClassname( pEntity, "monster_exp_alien_slave" )) != NULL)
+		{
 		TraceResult tr;
 
-		UTIL_TraceLine( EyePosition( ), pEntity->EyePosition( ), ignore_monsters, ENT(pev), &tr );
-		if (tr.flFraction == 1.0 || tr.pHit == pEntity->edict())
-		{
-			if (pEntity->pev->deadflag == DEAD_DEAD)
+			UTIL_TraceLine( EyePosition( ), pEntity->EyePosition( ), ignore_monsters, ENT(pev), &tr );
+			if (tr.flFraction == 1.0 || tr.pHit == pEntity->edict())
 			{
-				float d = (pev->origin - pEntity->pev->origin).Length();
-				if (d < flDist)
+				if (pEntity->pev->deadflag == DEAD_DEAD)
 				{
-					m_hDead = pEntity;
-					flDist = d;
+					float d = (pev->origin - pEntity->pev->origin).Length();
+					if (d < flDist)
+					{
+						m_hDead = pEntity;
+						flDist = d;
+					}
+					m_iBravery--;
 				}
-				m_iBravery--;
-			}
-			else
-			{
-				m_iBravery++;
+				else
+				{
+					m_iBravery++;
+				}
 			}
 		}
 	}
@@ -525,8 +569,14 @@ void CISlave :: StartTask ( Task_t *pTask )
 void CISlave :: Spawn()
 {
 	Precache( );
-
+	if (FClassNameIs(pev,"monster_alien_slave"))
+	{
 	SET_MODEL(ENT(pev), "models/islave.mdl");
+	}
+	else
+	{
+	SET_MODEL(ENT(pev), "models/sslave.mdl");
+	}
 	UTIL_SetSize(pev, VEC_HUMAN_HULL_MIN, VEC_HUMAN_HULL_MAX);
 
 	pev->solid			= SOLID_SLIDEBOX;
@@ -552,6 +602,7 @@ void CISlave :: Precache()
 	int i;
 
 	PRECACHE_MODEL("models/islave.mdl");
+	PRECACHE_MODEL("models/sslave.mdl");//violet Aslave	
 	PRECACHE_MODEL("sprites/lgtning.spr");
 	PRECACHE_SOUND("debris/zap1.wav");
 	PRECACHE_SOUND("debris/zap4.wav");
