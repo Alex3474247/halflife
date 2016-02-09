@@ -21,7 +21,8 @@
 //
 
 
-#define RGB_YELLOWISH 0x00FFA000 //255,160,0
+//#define RGB_YELLOWISH 0x00FFA000 //255,160,0
+#define RGB_YELLOWISH 0x00555EFF //85,94,255 //Blue Azure Sheep hud
 #define RGB_REDISH 0x00FF1010 //255,160,0
 #define RGB_GREENISH 0x0000A000 //0,160,0
 
@@ -36,6 +37,7 @@
 #define DHN_DRAWZERO 1
 #define DHN_2DIGITS  2
 #define DHN_3DIGITS  4
+#define DHN_4DIGITS  8//added by Alex. To display 4-digit number
 #define MIN_ALPHA	 100	
 
 #define		HUDELEM_ACTIVE	1
