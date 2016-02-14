@@ -16,3 +16,4 @@ weapon_toad (incorrectly sound emitting)
 monster_archer (working incorrectly)
 monster_spforce (weapon_beretta isn't spawning, but should)
 monster_worker (he mustn't cure player)
+monster_gordon (script of Gordon driving in a car is absent).
