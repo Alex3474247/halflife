@@ -12,7 +12,7 @@ monster_bodypart (no model in game resources)
 monster_garbage (no model in game resources)
 
 To fix:
-weapon_toad (incorrectly sound emitting)
+weapon_toad (problems with sound)
 monster_archer (working incorrectly)
 monster_spforce (weapon_beretta isn't spawning, but should)
 monster_worker (he mustn't cure player)
